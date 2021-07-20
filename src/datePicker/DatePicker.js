@@ -66,7 +66,7 @@ const DatePicker = props => {
       case 'datepicker':
         return (
           <React.Fragment>
-            <Calendar />
+            <Calendar reverse={props.reverse}/>
             <SelectMonth />
             <SelectTime />
           </React.Fragment>
@@ -74,7 +74,7 @@ const DatePicker = props => {
       case 'calendar':
         return (
           <React.Fragment>
-            <Calendar />
+            <Calendar reverse={props.reverse}/>
             <SelectMonth />
           </React.Fragment>
         );
