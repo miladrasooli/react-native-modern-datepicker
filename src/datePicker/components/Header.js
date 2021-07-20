@@ -46,8 +46,8 @@ const Header = ({changeMonth,reverse}) => {
   };
 
   return (
-    <View style={[style.container, reverse && style.reverseContainer]}>
-      {(reverse=='unset'||!reverse)&&<TouchableOpacity
+    <View style={[style.container, reverse==true && style.reverseContainer]}>
+      {(reverse=='unset'||reverse==false)&&<TouchableOpacity
         activeOpacity={0.7}
         onPress={() => !nextDisable && onChangeMonth('NEXT')}
         style={style.arrowWrapper}>
@@ -57,7 +57,7 @@ const Header = ({changeMonth,reverse}) => {
         />
       </TouchableOpacity>}
 
-      {reverse&&<TouchableOpacity
+      {reverse==true&&<TouchableOpacity
         activeOpacity={0.7}
         onPress={() => !nextDisable && onChangeMonth('NEXT')}
         style={style.arrowWrapper}>
@@ -124,7 +124,7 @@ const Header = ({changeMonth,reverse}) => {
           )}
         </Animated.View>
       </View>
-      {(reverse=='unset'||!reverse)&&<TouchableOpacity
+      {(reverse=='unset'||reverse==false)&&<TouchableOpacity
         activeOpacity={0.7}
         onPress={() => !prevDisable && onChangeMonth('PREVIOUS')}
         style={style.arrowWrapper}>
@@ -133,7 +133,7 @@ const Header = ({changeMonth,reverse}) => {
           style={[style.arrow,style.leftArrow, prevDisable && style.disableArrow]}
         />
       </TouchableOpacity>}
-      {reverse&&<TouchableOpacity
+      {reverse==true&&<TouchableOpacity
         activeOpacity={0.7}
         onPress={() => !prevDisable && onChangeMonth('PREVIOUS')}
         style={style.arrowWrapper}>
