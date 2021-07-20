@@ -4,7 +4,7 @@ import {View, StyleSheet, Text, Animated} from 'react-native';
 import {Header, Days} from '.';
 import {useCalendar} from '../DatePicker';
 
-const Calendar = () => {
+const Calendar = ({reverse}) => {
   const {options, state, utils, onSelectedChange} = useCalendar();
   const [mainState] = state;
   const style = styles(options);
@@ -19,7 +19,7 @@ const Calendar = () => {
 
   return (
     <View style={style.container}>
-      <Header changeMonth={changeMonthAnimation} />
+      <Header changeMonth={changeMonthAnimation} reverse={reverse}/>
       <View style={[style.daysName, utils.flexDirection]}>
         {utils.config.dayNamesShort.map(item => (
           <Text key={item} style={style.daysNameText}>
