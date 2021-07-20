@@ -4,7 +4,7 @@ import {View, TouchableOpacity, Text, Image, StyleSheet, Animated, I18nManager} 
 
 import {useCalendar} from '../DatePicker';
 
-const Header = ({changeMonth}) => {
+const Header = ({changeMonth,reverse}) => {
   const {
     options,
     disableDateChange,
@@ -46,8 +46,8 @@ const Header = ({changeMonth}) => {
   };
 
   return (
-    <View style={[style.container, I18nManager.isRTL && style.reverseContainer]}>
-      <TouchableOpacity
+    <View style={[style.container, reverse && style.reverseContainer]}>
+      {(reverse=='unset'||!reverse)&&<TouchableOpacity
         activeOpacity={0.7}
         onPress={() => !nextDisable && onChangeMonth('NEXT')}
         style={style.arrowWrapper}>
@@ -55,7 +55,17 @@ const Header = ({changeMonth}) => {
           source={require('../../assets/arrow.png')}
           style={[style.arrow, nextDisable && style.disableArrow]}
         />
-      </TouchableOpacity>
+      </TouchableOpacity>}
+
+      {reverse&&<TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => !nextDisable && onChangeMonth('NEXT')}
+        style={style.arrowWrapper}>
+        <Image
+          source={require('../../assets/arrow.png')}
+          style={[style.arrow,style.leftArrow, nextDisable && style.disableArrow]}
+        />
+      </TouchableOpacity>}
       <View style={style.monthYearContainer}>
         <Animated.View
           style={[
@@ -114,15 +124,24 @@ const Header = ({changeMonth}) => {
           )}
         </Animated.View>
       </View>
-      <TouchableOpacity
+      {(reverse=='unset'||!reverse)&&<TouchableOpacity
         activeOpacity={0.7}
         onPress={() => !prevDisable && onChangeMonth('PREVIOUS')}
         style={style.arrowWrapper}>
         <Image
           source={require('../../assets/arrow.png')}
-          style={[style.arrow, style.leftArrow, prevDisable && style.disableArrow]}
+          style={[style.arrow,style.leftArrow, prevDisable && style.disableArrow]}
         />
-      </TouchableOpacity>
+      </TouchableOpacity>}
+      {reverse&&<TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => !prevDisable && onChangeMonth('PREVIOUS')}
+        style={style.arrowWrapper}>
+        <Image
+          source={require('../../assets/arrow.png')}
+          style={[style.arrow, prevDisable && style.disableArrow]}
+        />
+      </TouchableOpacity>}
     </View>
   );
 };
